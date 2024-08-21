@@ -7,14 +7,14 @@ assignees: ''
 
 ---
 
-**As a** [role]  
-**I need** [function]  
-**So that** [benefit]  
+**As an** Account manager  
+**I need** i need a list of customer names and addresses 
+**So that** i can create an account service to read,update and delete
       
 ### Details and Assumptions
-    * [document what you know]      
+    * we maintain customer account service database      
 ### Acceptance Criteria     
     gherkin 
-    Given [some context]
-    When [certain action is taken]
-    Then [the outcome of action is observed]
+    Given there are 100 customers in the database
+    When i request customer names and addresses list
+    Then i should see a list of 100 customer names and addresses
