@@ -89,8 +89,42 @@ def create_accounts():
 ######################################################################
 # UPDATE AN EXISTING ACCOUNT
 ######################################################################
+    def test_update_account(self):
+        """It should Update an existing Account"""
+        # create an Account to update
 
-# ... place you code here to UPDATE an account ...
+        test_account = AccountFactory()
+        # send a self.client.post() request to the BASE_URL with a json payload of test_account.serialize()
+        # assert that the resp.status_code is status.HTTP_201_CREATED
+
+        # update the account
+
+        # get the data from resp.get_json() as new_account
+        # change new_account["name"] to something known
+        # send a self.client.put() request to the BASE_URL with a json payload of new_account
+        # assert that the resp.status_code is status.HTTP_200_OK
+        # get the data from resp.get_json() as updated_account
+        # assert that the updated_account["name"] is whatever you changed it to
+    ######################################################################
+    # UPDATE AN EXISTING ACCOUNT
+    ######################################################################
+    @app.route("/accounts/<int:account_id>", methods=["PUT"])
+    def update_accounts(account_id):
+        """
+        Update an Account
+        This endpoint will update an Account based on the posted data
+        """
+        app.logger.info("Request to update an Account with id: %s", account_id)
+
+        account = Account.find(account_id)
+        if not account:
+            abort(status.HTTP_404_NOT_FOUND, f"Account with id [{account_id}] could not be found.")
+
+        account.deserialize(request.get_json())
+        account.update()
+
+        return account.serialize(), status.HTTP_200_OK
+
 
 
 ######################################################################
